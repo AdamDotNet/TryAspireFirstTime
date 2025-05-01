@@ -1,0 +1,35 @@
+﻿@baseUrl = https://localhost:7413
+
+GET {{baseUrl}}/
+
+###
+
+GET {{baseUrl}}/debug
+Accept: application/json
+
+###
+
+GET {{baseUrl}}/people
+Accept: application/json
+
+###
+
+GET {{baseUrl}}/people/123
+Accept: application/json
+
+###
+
+PUT {{baseUrl}}/people
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "123",
+  "firstName": "Adam",
+  "lastName": "Venezia"
+}
+
+###
+
+DELETE {{baseUrl}}/people/123
+Accept: application/json
