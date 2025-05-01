@@ -71,6 +71,15 @@ app.MapDelete("/people/{id}", async (string id, IPeopleDocumentClient documentcl
     .Produces(StatusCodes.Status204NoContent)
     .Produces(StatusCodes.Status404NotFound);
 
+// Delete all people
+app.MapDelete("/people", async (IPeopleDocumentClient documentclient) =>
+{
+    await documentclient.DeleteAllPeopleAsync();
+    return Results.NoContent();
+})
+    .WithName("DeleteAllPeople")
+    .Produces(StatusCodes.Status204NoContent);
+
 app.MapDefaultEndpoints();
 
 app.Run();
