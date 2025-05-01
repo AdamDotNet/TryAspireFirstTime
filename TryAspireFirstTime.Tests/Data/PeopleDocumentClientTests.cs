@@ -36,10 +36,12 @@ namespace TryAspireFirstTime.Tests.Data
 				.WithWebHostBuilder(builder =>
 				{
 					builder.UseEnvironment("Automation");
+
 					builder.ConfigureLogging(logging =>
 					{
 						logging.AddXUnit(_testOutputHelper);
 					});
+
 					builder.ConfigureServices(services =>
 					{
 						var options = new CosmosClientOptions
@@ -54,6 +56,15 @@ namespace TryAspireFirstTime.Tests.Data
 						};
 						services.AddSingleton(new CosmosClient(cosmos, options));
 					});
+
+					// NOTE: This doesn't work, see explanation above.
+					/*builder.ConfigureAppConfiguration((context, config) =>
+					{
+						config.AddInMemoryCollection(new Dictionary<string, string?>
+						{
+							{ "cosmos:ConnectionString", cosmos }
+						});
+					});*/
 				});
 		}
 
